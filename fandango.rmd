@@ -1,6 +1,6 @@
 ---
 title: "Analysis of Fandango Movie ratings"
-output: html_notebook
+output: rmarkdown::github_document
 ---
 Project Goal:
 
@@ -59,21 +59,20 @@ glimpse(new_ratings)
 
 
 
-In Hickey's article, he set a minimum of 30 user_votes for a movie to be considered in his analysis, so I'll use the same figure
-
+In Hickey's article, he set a minimum of 30 user_votes for a movie to be considered in his analysis, so I'll use the same figure.
 ```{r}
 summary(original_ratings$Fandango_votes)
 ```
 Great so we can see we've a minimum value of 35, so we're good to go!
 
-As was mentioed before, we'll need to get that year out of the of the movie title column
+As was mentioed before, we'll need to get that year out of the of the movie title column.
 ```{r}
 original_ratings <- original_ratings %>%
         mutate(year = str_sub(FILM, -5, -2))
 ```
 
 
-Next step is to isolate the films released in 2015 and 2016, as these will be the two we'll be using in our comparison
+Next step is to isolate the films released in 2015 and 2016, as these will be the two we'll be using in our comparison.
 ```{r}
 movies_15 <- original_ratings %>%
         filter(year == 2015)
